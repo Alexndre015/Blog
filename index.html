@@ -190,26 +190,74 @@
   }
 }
 
+/* Menu normal no PC */
+.menu {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Botão escondido no PC */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Versão para celular */
+@media (max-width: 768px) {
+  .menu {
+    display: none; /* escondido por padrão */
+    flex-direction: column;
+    gap: 1rem;
+    background: #111;
+    padding: 1rem;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+  }
+
+  .menu.show {
+    display: flex; /* aparece quando clica */
+  }
+
+  .menu-toggle {
+    display: block; /* botão aparece no celular */
+  }
+}
   </style>
 </head>
+<script>
+  const toggleBtn = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.menu');
+
+  toggleBtn.addEventListener('click', () => {
+    menu.classList.toggle('show');
+  });
+</script>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <span>Meu Blog</span>
-      </div>
-      <nav>
-        <a href="#">Início</a>
-        <a href="#posts">Posts</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#contato">Contato</a>
-      </nav>
-      <div class="spacer"></div>
-      <button id="themeToggle" class="ghost-btn" title="Alternar tema">🌗 Tema</button>
-      <a class="button" href="#" title="Assinar">Assinar</a>
+ <header>
+  <div class="container nav">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <span>Meu Blog</span>
     </div>
-  </header>
+
+    <!-- Botão hamburguer -->
+    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+
+    <!-- Menu -->
+    <nav class="menu">
+      <a href="#">Início</a>
+      <a href="#posts">Posts</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
 
   <main class="container">
     <section class="hero">

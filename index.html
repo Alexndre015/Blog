@@ -296,14 +296,18 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-
 <script>
+  // Script do menu hamburguer
   const toggleBtn = document.querySelector('.menu-toggle');
   const menu = document.querySelector('.menu');
 
   toggleBtn.addEventListener('click', () => {
     menu.classList.toggle('show');
   });
+
+  // Ano automático no rodapé
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </script>
 </body>
 </html>

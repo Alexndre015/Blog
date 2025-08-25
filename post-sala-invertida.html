@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Metodologias ativas na alfabetização</title>
+  <meta name="description" content="Blog simples e moderno para começar no VS Code.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --surface: #0e141b;
+      --text: #e7edf5;
+      --muted: #a2b3c2;
+      --primary: #7c3aed; /* roxo vivo */
+      --accent: #06b6d4;  /* ciano */
+      --ring: rgba(124, 58, 237, .35);
+      --card: linear-gradient(180deg, rgba(124,58,237,.08), rgba(6,182,212,.06));
+    }
+    html[data-theme="light"] {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --text: #0e1116;
+      --muted: #4b5563;
+      --primary: #7c3aed;
+      --accent: #0891b2;
+      --ring: rgba(124, 58, 237, .25);
+      --card: linear-gradient(180deg, rgba(124,58,237,.06), rgba(6,182,212,.05));
+    }
+    * { box-sizing: border-box }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(124,58,237,.15), transparent 50%),
+                  radial-gradient(900px 500px at -10% -10%, rgba(6,182,212,.18), transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 1.2rem; }
+
+    /* Header */
+    header { position: sticky; top: 0; backdrop-filter: blur(8px); background: color-mix(in srgb, var(--bg) 85%, transparent); border-bottom: 1px solid rgba(255,255,255,.06); z-index: 50; }
+    .nav { display: flex; align-items: center; gap: 1rem; padding: .8rem 0; }
+    .brand { display: flex; align-items: center; gap: .7rem; font-weight: 800; letter-spacing: .2px; }
+    .logo { width: 34px; height: 34px; border-radius: 12px; background: linear-gradient(135deg, var(--primary), var(--accent)); box-shadow: 0 10px 30px var(--ring); }
+    .nav a { color: var(--muted); text-decoration: none; font-weight: 600; padding: .5rem .7rem; border-radius: .8rem; }
+    .nav a:hover { color: var(--text); background: rgba(255,255,255,.06); }
+    .spacer { flex: 1 }
+    .button { appearance: none; border: 0; background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: .65rem .95rem; border-radius: 14px; font-weight: 700; box-shadow: 0 10px 25px var(--ring); cursor: pointer; }
+    .ghost-btn { background: transparent; border: 1px solid rgba(255,255,255,.12); color: var(--text); padding: .55rem .9rem; border-radius: 12px; cursor: pointer; }
+
+    /* Hero */
+    .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; align-items: center; padding: 2.2rem 0 1rem; }
+    .hero h1 { font-size: clamp(2rem, 3.2vw + .8rem, 3rem); line-height: 1.15; margin: .2rem 0 1rem; }
+    .hero p { color: var(--muted); margin: .2rem 0 1.2rem; }
+    .hero-card { border-radius: 20px; background: var(--card); padding: 1rem; border: 1px solid rgba(255,255,255,.08); }
+    .hero-img { aspect-ratio: 4/3; border-radius: 16px; background: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1600&auto=format&fit=crop') center/cover; box-shadow: 0 20px 60px var(--ring); }
+
+    /* Tools */
+    .tools { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+    .chip { font-size: .85rem; padding: .25rem .6rem; border-radius: 10px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); color: var(--muted); }
+
+    /* Search */
+    .search-wrap { display: flex; gap: .6rem; align-items: center; margin: 1.2rem 0; }
+    .search { flex: 1; background: var(--surface); color: var(--text); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: .8rem 1rem; outline: none; }
+    .search:focus { box-shadow: 0 0 0 6px var(--ring); border-color: transparent; }
+
+    /* Grid */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr);} .hero { grid-template-columns: 1fr; } }
+    @media (max-width: 620px) { .grid { grid-template-columns: 1fr;} }
+
+    .card { display: flex; flex-direction: column; gap: .7rem; background: var(--surface); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: .9rem; transition: transform .12s ease, box-shadow .12s ease; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 14px 35px var(--ring); }
+    .thumb { aspect-ratio: 16/9; border-radius: 12px; background: #111; background-size: cover; background-position: center; }
+    .meta { display: flex; justify-content: space-between; align-items: center; gap: .6rem; color: var(--muted); font-size: .9rem; }
+    .title { margin: 0; font-size: 1.1rem; }
+    .read { margin-top: auto; }
+
+    /* Footer */
+    footer { margin: 2rem 0 3rem; color: var(--muted); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+
+    /* Utility */
+    .hide { display: none !important }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Meu Blog</span>
+      </div>
+      <nav>
+        <a href="index.html">Início</a>
+        <a href="#posts">Posts</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <div class="spacer"></div>
+      <button id="themeToggle" class="ghost-btn" title="Alternar tema">🌗 Tema</button>
+      <a class="button" href="#" title="Assinar">Assinar</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <div class="tools">
+               <span class="chip">Metodologias</span>
+          <span class="chip">Educação</span>
+          <span class="chip">Aprendizagem</span>
+        </div>
+        <h1>Sala de aula invertida📚</h1>
+        <p>Já pensou em inverter a ordem da aula? Na sala de aula invertida, o aluno tem contato com o conteúdo em casa (vídeos, textos, podcasts) e usa o tempo da sala para praticar, debater e tirar dúvidas.
+</p>
+<h2>Principais características:</h2>
+<p><li> Aprendizado fora da sala: os alunos estudam o conteúdo em casa, por meio de vídeos, textos ou podcasts.</li>
+<li>Tempo em sala para prática: a aula presencial é usada para atividades práticas, debates e resolução de dúvidas.</li>
+<li>Protagonismo do aluno: o estudante assume a responsabilidade pelo próprio aprendizado.</li>
+<li>Atuação do professor como facilitador: o docente orienta, esclarece dúvidas e promove discussões, em vez de apenas transmitir conteúdo.</li>
+<li>Uso de recursos lúdicos e tecnológicos: jogos, quizzes, aplicativos e atividades interativas para engajar os alunos.</li>
+<li>Flexibilidade e personalização: cada aluno aprende no seu ritmo e pode revisar o conteúdo quando necessário.</li>
+<li>Envolvimento da família: especialmente no Fundamental I, os pais ou responsáveis apoiam o aprendizado em casa.</li>
+<li>Desenvolvimento de habilidades cognitivas e sociais: estimula autonomia, senso crítico, colaboração e pensamento reflexivo.</li>
+</li></p>
+ </div>
+      <div class="hero-card">
+       <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1200&auto=format&fit=crop');"></div>
+      </div>
+    </section>

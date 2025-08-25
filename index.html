@@ -1,4 +1,4 @@
-!doctype html>
+<!doctype html>
 <html lang="pt-br">
 <head>
   <meta charset="utf-8" />
@@ -122,48 +122,6 @@
     }
     p { color: var(--muted); }
 
-    /* GRID DE POSTS */
-    #posts {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .post {
-      background: var(--surface);
-      border-radius: 1rem;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      transition: transform 0.2s ease;
-    }
-
-    .post:hover {
-      transform: translateY(-5px);
-    }
-
-    .post img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .post-content {
-      padding: 1rem;
-    }
-
-    .post-content h2 {
-      margin: 0;
-      font-size: 1.2rem;
-      color: var(--text);
-    }
-
-    .post-content p {
-      margin-top: .5rem;
-      font-size: 0.95rem;
-    }
-
     /* FOOTER */
     footer {
       margin-top: 3rem;
@@ -191,6 +149,23 @@
     </nav>
   </div>
 </header>
+
+
+<header>
+  <div class="container nav">
+    <div class="brand">Meu Blog</div>
+    <!-- Botão hamburguer -->
+    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    <!-- Menu -->
+    <nav class="menu">
+      <a href="#">Início</a>
+      <a href="#posts">Posts</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+<body>
 
 
   <main class="container">

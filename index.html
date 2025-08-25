@@ -204,51 +204,51 @@
   border: none;
   color: white;
   cursor: pointer;
+  position: relative;
+  z-index: 10;
 }
 
 /* Versão para celular */
 @media (max-width: 768px) {
-  position: relative;
+  /* Faz o container ser referência para o menu absoluto */
+  .container.nav {
+    position: relative;
   }
+
+  /* Menu escondido por padrão */
   .menu {
-    display: none; /* escondido por padrão */
+    display: none;
     flex-direction: column;
     gap: 1rem;
     background: #111;
     padding: 1rem;
     position: absolute;
-    top: 60px;
+    top: 100%; /* logo abaixo do container.nav */
     left: 0;
     width: 100%;
-  }
-.menu {
-  display: none;
-  flex-direction: column;
-  gap: 1rem;
-  background: #111;
-  padding: 1rem;
-  position: absolute;
-  top: 100%; /* fica logo abaixo do header */
-  left: 0;
-  width: 100%;
-}
-  .menu.show {
-    display: flex; /* aparece quando clica */
+    border-top: 1px solid rgba(255,255,255,.06);
   }
 
+  /* Mostra o menu quando clicar */
+  .menu.show {
+    display: flex;
+  }
+
+  /* Mostra o botão no celular */
   .menu-toggle {
-    display: block; /* botão aparece no celular */
+    display: block;
   }
 }
+
+/* Header relativo para conter o menu absoluto */
 header {
-  position: relative; /* garante que o menu absoluto fique dentro do header */
+  position: relative;
   top: 0;
   backdrop-filter: blur(8px);
   background: color-mix(in srgb, var(--bg) 85%, transparent);
   border-bottom: 1px solid rgba(255,255,255,.06);
   z-index: 50;
 }
-
   </style>
 </head>
 <body>
@@ -425,5 +425,14 @@ header {
 
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+<script>
+  const toggleBtn = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.menu');
+
+  toggleBtn.addEventListener('click', () => {
+    menu.classList.toggle('show');
+  });
+</script>
 </body>
 </html>

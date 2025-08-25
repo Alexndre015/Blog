@@ -144,6 +144,51 @@
     width: 100%;
   }
 }
+/* Ajustes extras para celular */
+@media (max-width: 480px) {
+  body {
+    font-size: 15px; /* reduz levemente o texto */
+  }
+
+  .container {
+    padding: 0.8rem;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem; /* menor título no mobile */
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .nav nav {
+    flex-direction: column;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .nav a {
+    width: 100%;
+    text-align: left;
+    padding: 0.6rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr; /* força 1 por linha */
+  }
+
+  .card {
+    padding: 0.8rem;
+  }
+}
 
   </style>
 </head>

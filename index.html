@@ -142,10 +142,41 @@
     padding: 0.7rem 1rem;
     text-align: center;
     width: 100%;
+  }}
+  .hamburguer{
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text);
+    margin-left: 1rem;
+  }
+  
+  @media (max-width:620px) {
+    .nav nav {
+      display: none;
+      flex-direction: column;
+      gap: 0.8rem;
+      position: absolute;
+      top: 60px;
+      right: 1rem;
+      background: var(--surface);
+      border-radius:12px;
+      box-shadow: 0 8px 24px var(--ring);
+      padding: 1rem;
+      z-index: 100;
+    }
+    .nav nav.open {
+      display: flex ;
+    }
+    .hamburguer {
+      display: block ;
   }
 }
 
   </style>
+
 </head>
 <body>
   <header>
@@ -154,7 +185,8 @@
         <div class="logo" aria-hidden="true"></div>
         <span>Meu Blog</span>
       </div>
-      <nav>
+      <button class="hamburguer" id="hamburgerBtn" aria-label="Abrir menu">☰</button>
+      <nav id="mainNav"> 
         <a href="#">Início</a>
         <a href="#posts">Posts</a>
         <a href="#sobre">Sobre</a>
@@ -310,7 +342,21 @@
     })();
 
     document.getElementById('year').textContent = new Date().getFullYear();
-
-</script>
+  
+  // Script para menu hamburguer
+  (function() {
+    const btn = document.getElementById('hamburgerBtn');
+    const nav = document.getElementById('mainNav');
+    btn.addEventListener('click', () => {
+      nav.classList.toggle('open');
+    });
+    // Fecha o menu ao clicar fora
+    document.addEventListener('click', (e) =>{
+      if (!nav.contains(e.target) && !btn.contains(e.target)) {
+        nav.classList.remove('open');   
+    }
+  });
+  })();
+    </script>
 </body>
 </html>
